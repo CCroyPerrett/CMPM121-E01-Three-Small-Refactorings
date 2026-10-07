@@ -40,16 +40,19 @@
       let target = null;
       // Pick the living enemy with the greatest current health.
       for (const enemy of enemies) {
-        // If health is zero, that enemy is not alive.
-        if (enemy.health <= 0)
+        //only consiters enemies of health greater than 0 to be a target
+        if(enemy.health > 0)
         {
-          continue;
-        }
-        // Keep the earliest enemy if two have equal health.
-          if (target && target.health > enemy.health) {
-          continue;
+          if(target == null)
+          {
+            target = enemy;
           }
-          target = enemy;
+          //selects later target in the order if it's health is greater
+          else if(target.health < enemy.health)
+          {
+            target = enemy;
+          }
+        }
       }
       return target;
     }
